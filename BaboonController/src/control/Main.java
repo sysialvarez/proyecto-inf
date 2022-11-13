@@ -21,7 +21,6 @@ import org.json.simple.parser.ParseException;
 
 import view.WindowLogin;
 import view.WindowMenuUser;
-import view.WindowMenuAdmin;
 import java.io.FileReader;
 import java.io.FileWriter;
 
@@ -74,14 +73,7 @@ public class Main {
 				if(role.equals("admin")) {
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {
-							try {
-								WindowMenuAdmin frame = new WindowMenuAdmin();
-								frame.setVisible(true);
-								WindowLogin windowLogin = new WindowLogin();
-								windowLogin.closeFrame();
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
+							
 						}
 					});
 				}else if(role.equals("user")) {
@@ -153,12 +145,7 @@ public class Main {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				try {
-					SendEmail.correoRegistro(login, password, correo);
-				} catch (MessagingException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				
 				JOptionPane.showMessageDialog(null, "Has registrado en sistema, ahora puedes entrar", "InfoBox: " + "Success", JOptionPane.INFORMATION_MESSAGE);
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
@@ -174,48 +161,7 @@ public class Main {
 		}
 	}
 	public static void registrarAdmin(String login, String password) throws IOException {
-		//Connection.registrarAdmin(login, password);
 		JOptionPane.showMessageDialog(null, "Has registrado usuario admin", "InfoBox: " + "Success", JOptionPane.INFORMATION_MESSAGE);
 	}
-
-	@SuppressWarnings("static-access")
-	public void modificarPiloto(int idpiloto, int numero, String nombre, String equipo, String nacionalidad, String fecha_nacim, int campeonatos_ganados) {
-		// TODO Auto-generated method stub
-		Connection mc = new Connection();
-		//mc.modificarPiloto(idpiloto, numero, nombre, equipo, nacionalidad, fecha_nacim, campeonatos_ganados);
-	}
-	public static void sendEmail() {
-		final String username = "proyecto.f1stats@gmail.com";
-        final String password = "F1StatsUem";
-
-        Properties prop = new Properties();
-        prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.starttls.enable", "true");
-		prop.put("mail.smtp.host", "smtp.gmail.com");
-        prop.put("mail.smtp.port", "587");
-        
-        Session session = Session.getInstance(prop,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
-
-        try {
-
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("proyecto.f1stats@gmail.com"));
-            message.setRecipients(
-                    Message.RecipientType.TO,
-                    InternetAddress.parse("l.karagishev@gmail.com")
-            );
-            message.setSubject("Testing Gmail SSL");
-            message.setText("Dear Mail Crawler,"
-                    + "\n\n Please do not spam my email!");
-
-            Transport.send(message);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-	}
+	
 }

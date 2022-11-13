@@ -16,7 +16,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import control.AdminFunctions;
+
 import control.Connection;
 import control.Main;
 import control.UserFunctions;
@@ -39,23 +39,19 @@ import java.awt.FlowLayout;
 public class WindowMenuUser extends JFrame{
 	public JPanel panelMultiple;
 	public JPanel panel_2;
-	JPanel panelPilotos;
-	JPanel panelTablePilotos;
-	JPanel panelTableCarreras;
+	JPanel panelSonido;
+	JPanel panelContenidoSonido;
+	JPanel panelHumedad;
 	JPanel panelPerfilUsuario;
-	JPanel panelClasificacion;
-	JPanel panelCaracteristicas;
+	JPanel panelLuz;
+	JPanel panelTemperatura;
 	JComboBox comboBox;
 	String []cmbxSexo = {"HOMBRE", "MUJER"};
 	String nombre;
-	private JTable tablePilotos;
-	private JTable tableCarreras;
 	private JTextField txtNombre;
 	private JTextField txtApellido;
 	private JTextField txtCorreo;
 	private JTextField txtFechaN;
-	private JTable tableInfo;
-	private JTable tableCaracteristicas;
 	
 	UserFunctions uf = new UserFunctions();
 	
@@ -126,70 +122,70 @@ public class WindowMenuUser extends JFrame{
 		lblNewLabel_1.setBounds(0, 0, 270, 60);
 		panelPerfil.add(lblNewLabel_1);
 		
-		JPanel panelCarreras = new JPanel();
-		panelCarreras.addMouseListener(new MouseAdapter() {
+		JPanel panelDeHumedad = new JPanel();
+		panelDeHumedad.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				panelCarreras.setBackground(new Color(20, 101, 193));
+				panelDeHumedad.setBackground(new Color(20, 101, 193));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				panelCarreras.setBackground(new Color(20, 91, 173));
+				panelDeHumedad.setBackground(new Color(20, 91, 173));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				panelMultiple.removeAll();
 				panelMultiple.repaint();
 				panelMultiple.revalidate(); 
-				panelTableCarreras.setVisible(true);
-				panelMultiple.add(panelTableCarreras);
-				tablaCarreras();
+				panelHumedad.setVisible(true);
+				panelMultiple.add(panelHumedad);
+				
 			}
 		});
-		panelCarreras.setBackground(new Color(20, 91, 173));
-		panelCarreras.setBounds(0, 271, 270, 60);
-		panelMenu.add(panelCarreras);
-		panelCarreras.setLayout(null);
+		panelDeHumedad.setBackground(new Color(20, 91, 173));
+		panelDeHumedad.setBounds(0, 271, 270, 60);
+		panelMenu.add(panelDeHumedad);
+		panelDeHumedad.setLayout(null);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Datos de humedad");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1.setFont(new Font("Ebrima", Font.BOLD, 16));
 		lblNewLabel_1_1.setBounds(0, 0, 270, 60);
-		panelCarreras.add(lblNewLabel_1_1);
+		panelDeHumedad.add(lblNewLabel_1_1);
 		
-		panelPilotos = new JPanel();
+		panelSonido = new JPanel();
 		
-		panelPilotos.addMouseListener(new MouseAdapter() {
+		panelSonido.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				panelPilotos.setBackground(new Color(20, 101, 193));
+				panelSonido.setBackground(new Color(20, 101, 193));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				panelPilotos.setBackground(new Color(20, 91, 173));
+				panelSonido.setBackground(new Color(20, 91, 173));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				panelMultiple.removeAll();
 				panelMultiple.repaint();
 				panelMultiple.revalidate(); 
-				panelTablePilotos.setVisible(true);
-				panelMultiple.add(panelTablePilotos);
-				tablaPilotos();
+				panelContenidoSonido.setVisible(true);
+				panelMultiple.add(panelContenidoSonido);
+				
 			}
 		});
-		panelPilotos.setBackground(new Color(20, 91, 173));
-		panelPilotos.setBounds(0, 332, 270, 60);
-		panelMenu.add(panelPilotos);
-		panelPilotos.setLayout(null);
+		panelSonido.setBackground(new Color(20, 91, 173));
+		panelSonido.setBounds(0, 332, 270, 60);
+		panelMenu.add(panelSonido);
+		panelSonido.setLayout(null);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("Datos de sonido");
 		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1_1.setFont(new Font("Ebrima", Font.BOLD, 16));
 		lblNewLabel_1_1_1.setBounds(0, 0, 270, 60);
-		panelPilotos.add(lblNewLabel_1_1_1);
+		panelSonido.add(lblNewLabel_1_1_1);
 		
 		JPanel panelExit = new JPanel();
 		panelExit.addMouseListener(new MouseAdapter() {
@@ -218,82 +214,76 @@ public class WindowMenuUser extends JFrame{
 		lblNewLabel_1_1_1_1.setBounds(0, 0, 270, 60);
 		panelExit.add(lblNewLabel_1_1_1_1);
 		
-		JPanel panelClasificacionMenu = new JPanel();
-		panelClasificacionMenu.addMouseListener(new MouseAdapter() {
+		JPanel panelDeLuz = new JPanel();
+		panelDeLuz.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				panelClasificacionMenu.setBackground(new Color(20, 101, 193));
+				panelDeLuz.setBackground(new Color(20, 101, 193));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				panelClasificacionMenu.setBackground(new Color(20, 91, 173));
+				panelDeLuz.setBackground(new Color(20, 91, 173));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				panelMultiple.removeAll();
 				panelMultiple.repaint();
 				panelMultiple.revalidate();
-				panelClasificacion.setVisible(true);
-				panelMultiple.add(panelClasificacion);
-				tablaClasificacion();
+				panelLuz.setVisible(true);
+				panelMultiple.add(panelLuz);
+				
 			}
 		});
-		panelClasificacionMenu.setLayout(null);
-		panelClasificacionMenu.setBackground(new Color(20, 91, 173));
-		panelClasificacionMenu.setBounds(0, 149, 270, 60);
-		panelMenu.add(panelClasificacionMenu);
+		panelDeLuz.setLayout(null);
+		panelDeLuz.setBackground(new Color(20, 91, 173));
+		panelDeLuz.setBounds(0, 149, 270, 60);
+		panelMenu.add(panelDeLuz);
 		
-		JLabel lblClasificacion = new JLabel("Datos de luz");
-		lblClasificacion.setHorizontalAlignment(SwingConstants.CENTER);
-		lblClasificacion.setForeground(Color.WHITE);
-		lblClasificacion.setFont(new Font("Ebrima", Font.BOLD, 16));
-		lblClasificacion.setBounds(0, 0, 270, 60);
-		panelClasificacionMenu.add(lblClasificacion);
+		JLabel lblLuz = new JLabel("Datos de luz");
+		lblLuz.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLuz.setForeground(Color.WHITE);
+		lblLuz.setFont(new Font("Ebrima", Font.BOLD, 16));
+		lblLuz.setBounds(0, 0, 270, 60);
+		panelDeLuz.add(lblLuz);
 		
-		JPanel panelCaracteristicasMenu = new JPanel();
-		panelCaracteristicasMenu.addMouseListener(new MouseAdapter() {
+		JPanel panelDeTemperatura = new JPanel();
+		panelDeTemperatura.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				panelCaracteristicasMenu.setBackground(new Color(20, 101, 193));
+				panelDeTemperatura.setBackground(new Color(20, 101, 193));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				panelCaracteristicasMenu.setBackground(new Color(20, 91, 173));
+				panelDeTemperatura.setBackground(new Color(20, 91, 173));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				panelMultiple.removeAll();
 				panelMultiple.repaint();
 				panelMultiple.revalidate();
-				panelCaracteristicas.setVisible(true);
-				panelMultiple.add(panelCaracteristicas);
-				tablaCaracteristicas();
+				panelTemperatura.setVisible(true);
+				panelMultiple.add(panelTemperatura);
+				
 			}
 		});
-		panelCaracteristicasMenu.setLayout(null);
-		panelCaracteristicasMenu.setBackground(new Color(20, 91, 173));
-		panelCaracteristicasMenu.setBounds(0, 393, 270, 60);
-		panelMenu.add(panelCaracteristicasMenu);
+		panelDeTemperatura.setLayout(null);
+		panelDeTemperatura.setBackground(new Color(20, 91, 173));
+		panelDeTemperatura.setBounds(0, 393, 270, 60);
+		panelMenu.add(panelDeTemperatura);
 		
-		JLabel lblCaracteristicas = new JLabel("Datos de temperatura");
-		lblCaracteristicas.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCaracteristicas.setForeground(Color.WHITE);
-		lblCaracteristicas.setFont(new Font("Ebrima", Font.BOLD, 16));
-		lblCaracteristicas.setBounds(0, 0, 270, 60);
-		panelCaracteristicasMenu.add(lblCaracteristicas);
+		JLabel lblTemperatura = new JLabel("Datos de temperatura");
+		lblTemperatura.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTemperatura.setForeground(Color.WHITE);
+		lblTemperatura.setFont(new Font("Ebrima", Font.BOLD, 16));
+		lblTemperatura.setBounds(0, 0, 270, 60);
+		panelDeTemperatura.add(lblTemperatura);
 		
-		/*panelCaracteristicasMenu.setLayout(null);
-		panelCaracteristicasMenu.setBackground(new Color(20, 91, 173));
-		panelCaracteristicasMenu.setBounds(0, 393, 270, 60);
-		panelMenu.add(panelCaracteristicasMenu);
+		panelDeTemperatura.setLayout(null);
+		panelDeTemperatura.setBackground(new Color(20, 91, 173));
+		panelDeTemperatura.setBounds(0, 393, 270, 60);
+		panelMenu.add(panelDeTemperatura);
 		
-		JLabel lblIncidencias = new JLabel("Incidencias");
-		lblIncidencias.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIncidencias.setForeground(Color.WHITE);
-		lblIncidencias.setFont(new Font("Ebrima", Font.BOLD, 16));
-		lblIncidencias.setBounds(0, 0, 270, 60);
-		panelCaracteristicasMenu.add(lblIncidencias);
-		*/
+
 		
 		panelMultiple = new JPanel();
 		panelMultiple.setBackground(Color.WHITE);
@@ -325,84 +315,46 @@ public class WindowMenuUser extends JFrame{
 		panelBnv.add(lblBienvenido);
 		lblBienvenido.setFont(new Font("Ebrima", Font.BOLD, 18));
 		
-		panelTablePilotos = new JPanel();
-		panelTablePilotos.setBackground(Color.WHITE);
-		panelTablePilotos.setBounds(0, 0, 515, 561);
-		panelMultiple.add(panelTablePilotos);
-		panelTablePilotos.setLayout(null);
-		panelTablePilotos.setVisible(false);
+		panelContenidoSonido = new JPanel();
+		panelContenidoSonido.setBackground(Color.WHITE);
+		panelContenidoSonido.setBounds(0, 0, 515, 561);
+		panelMultiple.add(panelContenidoSonido);
+		panelContenidoSonido.setLayout(null);
+		panelContenidoSonido.setVisible(false);
 		
 		JPanel panel_4_1_1 = new JPanel();
 		panel_4_1_1.setBounds(0, 41, 515, 120);
 		panel_4_1_1.setBackground(new Color(25, 118, 209));
-		panelTablePilotos.add(panel_4_1_1);
+		panelContenidoSonido.add(panel_4_1_1);
 		panel_4_1_1.setLayout(null);
 		
-		JLabel lblNewLabel_3_1_1 = new JLabel("LISTA DE PILOTOS");
+		JLabel lblNewLabel_3_1_1 = new JLabel("DATOS DE SONIDO");
 		lblNewLabel_3_1_1.setBounds(0, 0, 515, 119);
 		lblNewLabel_3_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3_1_1.setForeground(Color.WHITE);
 		lblNewLabel_3_1_1.setFont(new Font("Ebrima", Font.BOLD, 18));
 		panel_4_1_1.add(lblNewLabel_3_1_1);
 		
-		JScrollPane scrollPanePilotos = new JScrollPane();
-		scrollPanePilotos.setBounds(10, 226, 495, 324);
-		panelTablePilotos.add(scrollPanePilotos);
 		
-		tablePilotos = new JTable(){
-			@SuppressWarnings("unused")
-			public boolean isCellEditable(int row, int column) {
-			    return false;
-			}
-		};
-		tablePilotos.setSelectionBackground(new Color(25, 118, 209));
-		tablePilotos.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//int row = tablePilotos.getSelectedRow();
-				//nombre = (String) tablePilotos.getModel().getValueAt(row, 0);
-			}
-		});
-		scrollPanePilotos.setViewportView(tablePilotos);
+		panelHumedad = new JPanel();
+		panelHumedad.setBounds(0, 0, 515, 561);
+		panelMultiple.add(panelHumedad);
+		panelHumedad.setLayout(null);
+		panelHumedad.setVisible(false);
 		
-		panelTableCarreras = new JPanel();
-		panelTableCarreras.setBounds(0, 0, 515, 561);
-		panelMultiple.add(panelTableCarreras);
-		panelTableCarreras.setLayout(null);
-		panelTableCarreras.setVisible(false);
+		JPanel panelLblHumedad = new JPanel();
+		panelLblHumedad.setBounds(0, 41, 515, 120);
+		panelLblHumedad.setLayout(null);
+		panelLblHumedad.setBackground(new Color(25, 118, 209));
+		panelHumedad.add(panelLblHumedad);
 		
-		JPanel panelLblCarreras = new JPanel();
-		panelLblCarreras.setBounds(0, 41, 515, 120);
-		panelLblCarreras.setLayout(null);
-		panelLblCarreras.setBackground(new Color(25, 118, 209));
-		panelTableCarreras.add(panelLblCarreras);
-		
-		JLabel lblCarreras = new JLabel("Datos de humedad");
+		JLabel lblCarreras = new JLabel("DATOS HUMEDAD");
 		lblCarreras.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCarreras.setForeground(Color.WHITE);
 		lblCarreras.setFont(new Font("Ebrima", Font.BOLD, 18));
 		lblCarreras.setBounds(0, 0, 515, 119);
-		panelLblCarreras.add(lblCarreras);
+		panelLblHumedad.add(lblCarreras);
 		
-		JScrollPane scrollPaneCarreras = new JScrollPane();
-		scrollPaneCarreras.setBounds(10, 226, 495, 324);
-		panelTableCarreras.add(scrollPaneCarreras);
-		
-		tableCarreras = new JTable(){
-			@SuppressWarnings("unused")
-			public boolean isCellEditable(int row, int column) {
-			    return false;
-			}
-		};
-		tableCarreras.setSelectionBackground(new Color(25, 118, 209));
-		tableCarreras.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//int row = tableCarreras.getSelectedRow();
-				//nombre = (String) tableCarreras.getModel().getValueAt(row, 0);
-			}
-		});
-		scrollPaneCarreras.setViewportView(tableCarreras);
 		
 		panelPerfilUsuario = new JPanel();
 		panelPerfilUsuario.setBackground(Color.WHITE);
@@ -625,38 +577,26 @@ public class WindowMenuUser extends JFrame{
 		separatorNombre_1_1_1_1.setBounds(189, 313, 170, 2);
 		panelPerfilUsuario.add(separatorNombre_1_1_1_1);
 		
-		panelClasificacion = new JPanel();
-		panelClasificacion.setBackground(Color.WHITE);
-		panelClasificacion.setBounds(0, 0, 515, 561);
-		panelMultiple.add(panelClasificacion);
-		panelClasificacion.setLayout(null);
-		panelClasificacion.setVisible(false);
+		panelLuz= new JPanel();
+		panelLuz.setBackground(Color.WHITE);
+		panelLuz.setBounds(0, 0, 515, 561);
+		panelMultiple.add(panelLuz);
+		panelLuz.setLayout(null);
+		panelLuz.setVisible(false);
 		
 		JPanel panel_4_1_1_1 = new JPanel();
 		panel_4_1_1_1.setBounds(0, 41, 515, 120);
 		panel_4_1_1_1.setBackground(new Color(25, 118, 209));
-		panelClasificacion.add(panel_4_1_1_1);
+		panelLuz.add(panel_4_1_1_1);
 		panel_4_1_1_1.setLayout(null);
 		
-		JLabel lblNewLabel_3_1_1_1 = new JLabel("CLASIFICACI\u00D3N");
+		JLabel lblNewLabel_3_1_1_1 = new JLabel("DATOS DE LUZ");
 		lblNewLabel_3_1_1_1.setBounds(0, 0, 515, 119);
 		lblNewLabel_3_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3_1_1_1.setForeground(Color.WHITE);
 		lblNewLabel_3_1_1_1.setFont(new Font("Ebrima", Font.BOLD, 18));
 		panel_4_1_1_1.add(lblNewLabel_3_1_1_1);
 		
-		JScrollPane scrollPaneClasificacion = new JScrollPane();
-		scrollPaneClasificacion.setBounds(10, 226, 495, 324);
-		panelClasificacion.add(scrollPaneClasificacion);
-		
-		tableInfo = new JTable(){
-			@SuppressWarnings("unused")
-			public boolean isCellEditable(int row, int column) {
-			    return false;
-			}
-		};
-		tableInfo.setSelectionBackground(new Color(25, 118, 209));
-		scrollPaneClasificacion.setViewportView(tableInfo);
 		
 		JPanel panelInfo = new JPanel();
 		panelInfo.addMouseListener(new MouseAdapter() {
@@ -667,21 +607,22 @@ public class WindowMenuUser extends JFrame{
 			@Override
 			public void mouseExited(MouseEvent e) {
 				panelInfo.setBackground(new Color(20, 91, 173));
+		
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				panelMultiple.removeAll();
 				panelMultiple.repaint();
 				panelMultiple.revalidate(); 
-				panelClasificacion.setVisible(true);
-				panelMultiple.add(panelClasificacion);
+				panelLuz.setVisible(true);
+				panelMultiple.add(panelLuz);
 				tablaInfo();
 			}
 		});
 		panelInfo.setLayout(null);
 		panelInfo.setBackground(new Color(20, 91, 173));
 		panelInfo.setBounds(10, 171, 170, 44);
-		panelClasificacion.add(panelInfo);
+		panelLuz.add(panelInfo);
 		
 		JLabel lblResultados_1 = new JLabel("INFO");
 		lblResultados_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -690,144 +631,32 @@ public class WindowMenuUser extends JFrame{
 		lblResultados_1.setBounds(0, 0, 170, 44);
 		panelInfo.add(lblResultados_1);
 		
-		panelCaracteristicas = new JPanel();
-		panelCaracteristicas.setBackground(Color.WHITE);
-		panelCaracteristicas.setBounds(0, 0, 515, 561);
-		panelMultiple.add(panelCaracteristicas);
-		panelCaracteristicas.setLayout(null);
+		panelTemperatura = new JPanel();
+		panelTemperatura.setBackground(Color.WHITE);
+		panelTemperatura.setBounds(0, 0, 515, 561);
+		panelMultiple.add(panelTemperatura);
+		panelTemperatura.setLayout(null);
 		
 		JPanel panel_4_1_1_1_1 = new JPanel();
 		panel_4_1_1_1_1.setLayout(null);
 		panel_4_1_1_1_1.setBackground(new Color(25, 118, 209));
 		panel_4_1_1_1_1.setBounds(0, 41, 515, 120);
-		panelCaracteristicas.add(panel_4_1_1_1_1);
+		panelTemperatura.add(panel_4_1_1_1_1);
 		
-		JLabel lblNewLabel_3_1_1_1_1 = new JLabel("CARACTERISTICAS DE COCHES");
+		JLabel lblNewLabel_3_1_1_1_1 = new JLabel("DATOS TEMPERATURA");
 		lblNewLabel_3_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3_1_1_1_1.setForeground(Color.WHITE);
 		lblNewLabel_3_1_1_1_1.setFont(new Font("Ebrima", Font.BOLD, 18));
 		lblNewLabel_3_1_1_1_1.setBounds(0, 0, 515, 119);
 		panel_4_1_1_1_1.add(lblNewLabel_3_1_1_1_1);
 		
-		JScrollPane scrollPaneCaracteristicas = new JScrollPane();
-		scrollPaneCaracteristicas.setBounds(10, 226, 495, 324);
-		panelCaracteristicas.add(scrollPaneCaracteristicas);
-		panelCaracteristicas.setVisible(false);
-		
-		tableCaracteristicas = new JTable(){
-			@SuppressWarnings("unused")
-			public boolean isCellEditable(int row, int column) {
-			    return false;
-			}
-		};
-		tableCaracteristicas.setSelectionBackground(new Color(25, 118, 209));
-		scrollPaneCaracteristicas.setViewportView(tableCaracteristicas);
 		
 		panel_2 = new JPanel();
 		panel_2.setBackground(Color.MAGENTA);
 		panel_2.setBounds(0, 0, 515, 561);
 	}
-		
-	public void tablaPilotos() {
-		JSONObject obj = new JSONObject();
-		JSONArray jrr = new JSONArray();
-		Object ob = null;
-		JSONParser jp = new JSONParser();
-		
-		try {
-			FileReader file = new FileReader("pilotos.json");
-			ob = jp.parse(file);
-			jrr=(JSONArray) ob;
-			file.close();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		int size = jrr.size();
-		
-		DefaultTableModel model = new DefaultTableModel();
-		tablePilotos.setModel(model);
-		
-		model.addColumn("Numero");
-		model.addColumn("Nombre");
-		model.addColumn("Equipo");
-		model.addColumn("Nacionalidad");
-		model.addColumn("Edad");
-		model.addColumn("Campeonatos ganados");
-		
-		Object [] filas = new Object[size];
-		
-		for(int i=0; i<size; i++) {
-			JSONObject row = (JSONObject) jrr.get(i);
-			String name = (String) row.get("numero");
-			String nombre = (String) row.get("nombre");
-			String equipo = (String) row.get("equipo");
-			String nacionalidad = (String) row.get("nacionalidad");
-			String edad = (String) row.get("edad");
-			String campeonatos_ganados = (String) row.get("campeonatos_ganados");
-			filas[0] = name;
-			filas[1] = nombre;
-			filas[2] = equipo;
-			filas[3] = nacionalidad;
-			filas[4] = edad;
-			filas[5] = campeonatos_ganados;
-			model.addRow(filas);
-		}
-	}
-	public void tablaCarreras() {
-		JSONObject obj = new JSONObject();
-		JSONArray jrr = new JSONArray();
-		Object ob = null;
-		JSONParser jp = new JSONParser();
-		
-		try {
-			FileReader file = new FileReader("lista_carreras_gp.json");
-			ob = jp.parse(file);
-			jrr=(JSONArray) ob;
-			file.close();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		int size = jrr.size();
-		
-		DefaultTableModel model = new DefaultTableModel();
-		tableCarreras.setModel(model);
-		
-		model.addColumn("Nombre circuito");
-		model.addColumn("Lugar");
-		model.addColumn("Distancia");
-		model.addColumn("Fecha");
-		
-		Object [] filas = new Object[size];
-		
-		for(int i=0; i<size; i++) {
-			JSONObject row = (JSONObject) jrr.get(i);
-			String nombre_circuito = (String) row.get("nombre_circuito");
-			String lugar = (String) row.get("lugar");
-			String distancia = (String) row.get("distancia");
-			String fecha = (String) row.get("fecha");
-			filas[0] = nombre_circuito;
-			filas[1] = lugar;
-			filas[2] = distancia;
-			filas[3] = fecha;
-			model.addRow(filas);
-		}
-	}
+	
+	
 	public void consultPerfil() {
 		txtNombre.setText("TU NOMBRE");
 		txtApellido.setText("TU APELLIDO");
@@ -884,186 +713,5 @@ public class WindowMenuUser extends JFrame{
 		Object ob = null;
 		JSONParser jp = new JSONParser();
 		
-		try {
-			FileReader file = new FileReader("ultimos_resultados.json");
-			ob = jp.parse(file);
-			jrr=(JSONArray) ob;
-			file.close();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		int size = jrr.size();
-		
-		Object [][] filas = new Object[size][2];
-		
-		DefaultTableModel model = new DefaultTableModel();
-		tableInfo.setModel(model);
-		
-		model.addColumn("Nombre");
-		model.addColumn("Numero");
-		
-		for(int i=0; i<size; i++) {
-			int suma = 0;
-			JSONObject row = (JSONObject) jrr.get(i);
-			String nombre = (String) row.get("piloto");
-			filas[i][0] = nombre;
-			filas[i][1] = 0;
-			for(int j=1; j<22; j++) {
-				String numCirc = String.valueOf(j) + " GP";
-				String points = (String) row.get(numCirc);
-				int pointsInt = Integer.valueOf(points);
-				switch(pointsInt) {
-				case 1:
-					suma +=25;
-				break;
-				case 2:
-					suma +=18;
-				break;
-				case 3:
-					suma +=15;
-				break;
-				case 4:
-					suma +=10;
-				break;
-				case 5:
-					suma +=8;
-				break;
-				case 6:
-					suma +=6;
-				break;
-				case 7:
-					suma +=5;
-				break;
-				case 8:
-					suma +=3;
-				break;
-				case 9:
-					suma +=2;
-				break;
-				case 10:
-					suma +=1;
-				break;
-				}
-			}
-			filas[i][1] += String.valueOf(suma);
-			model.addRow(filas[i]);
-		}	
-	}
-	public void tablaClasificacion() {
-		JSONObject obj = new JSONObject();
-		JSONArray jrr = new JSONArray();
-		Object ob = null;
-		JSONParser jp = new JSONParser();
-		
-		try {
-			FileReader file = new FileReader("mejores_tiempos_circuitos.json");
-			ob = jp.parse(file);
-			jrr=(JSONArray) ob;
-			file.close();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		int size = jrr.size();
-		
-		DefaultTableModel model = new DefaultTableModel();
-		tableInfo.setModel(model);
-		
-		model.addColumn("Nombre circuito");
-		model.addColumn("Piloto");
-		model.addColumn("Tiempo");
-		model.addColumn("AÃ±o");
-		
-		Object [] filas = new Object[size];
-		
-		for(int i=0; i<size; i++) {
-			JSONObject row = (JSONObject) jrr.get(i);
-			String nombre_circuito = (String) row.get("nombre_circuito");
-			String piloto = (String) row.get("Piloto");
-			String tiempo = (String) row.get("Tiempo");
-			String ano = (String) row.get("Año");
-			filas[0] = nombre_circuito;
-			filas[1] = piloto;
-			filas[2] = tiempo;
-			filas[3] = ano;
-			model.addRow(filas);
-		}
-	}
-	public void tablaCaracteristicas() {
-		JSONObject obj = new JSONObject();
-		JSONArray jrr = new JSONArray();
-		Object ob = null;
-		JSONParser jp = new JSONParser();
-		
-		try {
-			FileReader file = new FileReader("especificaciones_coche.json");
-			ob = jp.parse(file);
-			jrr=(JSONArray) ob;
-			file.close();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		int size = jrr.size();
-		
-		DefaultTableModel model = new DefaultTableModel();
-		tableCaracteristicas.setModel(model);
-		
-		model.addColumn("Nombre circuito");
-		model.addColumn("Motor");
-		model.addColumn("Peso");
-		model.addColumn("Carroceria");
-		model.addColumn("Frenos");
-		model.addColumn("Caja de cambios");
-		model.addColumn("Suspension delantera");
-		model.addColumn("Suspension trasera");
-		model.addColumn("Ruedas");
-		
-		Object [] filas = new Object[size];
-		
-		for(int i=0; i<size; i++) {
-			JSONObject row = (JSONObject) jrr.get(i);
-			String nombre = (String) row.get("Nombre");
-			String motor = (String) row.get("Motor");
-			String tiempo = (String) row.get("Peso");
-			String carroceria = (String) row.get("Carroceria");
-			String frenos = (String) row.get("Frenos");
-			String caja_cambios = (String) row.get("Caja de cambios");
-			String suspension_delantera = (String) row.get("Suspension delantera");
-			String suspension_trasera = (String) row.get("Suspension trasera");
-			String ruedas = (String) row.get("Ruedas");
-			filas[0] = nombre;
-			filas[1] = motor;
-			filas[2] = tiempo;
-			filas[3] = carroceria;
-			filas[4] = frenos;
-			filas[5] = caja_cambios;
-			filas[6] = suspension_delantera;
-			filas[7] = suspension_trasera;
-			filas[8] = ruedas;
-			model.addRow(filas);
-		}
 	}
 }

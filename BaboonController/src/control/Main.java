@@ -21,6 +21,7 @@ import org.json.simple.parser.ParseException;
 
 import view.WindowLogin;
 import view.WindowMenuUser;
+import view.WindowMenuAdmin;
 import java.io.FileReader;
 import java.io.FileWriter;
 
@@ -73,7 +74,14 @@ public class Main {
 				if(role.equals("admin")) {
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {
-							
+							try {
+                                WindowMenuAdmin frame = new WindowMenuAdmin();
+                                frame.setVisible(true);
+                                WindowLogin windowLogin = new WindowLogin();
+                                windowLogin.closeFrame();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
 						}
 					});
 				}else if(role.equals("user")) {
